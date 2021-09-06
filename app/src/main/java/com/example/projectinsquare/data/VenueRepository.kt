@@ -11,7 +11,7 @@ class VenueRepository @Inject constructor() {
     private val limit = 10
     private val radiusInMeters = 1000
 
-    suspend fun searchVenues(): List<Venue> {
+    suspend fun searchVenues(query: String): List<Venue> {
         return forSquareService.searchVenues(
             clientId,
             clientSecret,
@@ -19,7 +19,16 @@ class VenueRepository @Inject constructor() {
             near,
             limit,
             radiusInMeters,
-            "Bank"
+            query
         ).response.venues
+    }
+
+    suspend fun venueDetails(venueId: String): VenueDetails {
+        return forSquareService.venueDetails(
+            venueId,
+            clientId,
+            clientSecret,
+            version,
+        ).response.venue
     }
 }
