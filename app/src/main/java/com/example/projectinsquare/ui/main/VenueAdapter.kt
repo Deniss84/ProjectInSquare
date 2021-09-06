@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectinsquare.R
-import com.example.projectinsquare.data.Venue
+import com.example.projectinsquare.data.model.Venue
 import javax.inject.Inject
 
 class VenueAdapter @Inject constructor() :

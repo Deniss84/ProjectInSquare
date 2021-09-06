@@ -1,4 +1,4 @@
-package com.example.projectinsquare.data
+package com.example.projectinsquare.data.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

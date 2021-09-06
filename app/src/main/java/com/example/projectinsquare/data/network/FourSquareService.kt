@@ -1,5 +1,7 @@
-package com.example.projectinsquare.data
+package com.example.projectinsquare.data.network
 
+import com.example.projectinsquare.data.model.VenueDetailsResponse
+import com.example.projectinsquare.data.model.Venues
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

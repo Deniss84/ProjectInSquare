@@ -1,10 +1,14 @@
 package com.example.projectinsquare.data
 
+import com.example.projectinsquare.data.model.Venue
+import com.example.projectinsquare.data.model.VenueDetails
+import com.example.projectinsquare.data.network.RetrofitBuilder
 import javax.inject.Inject
 
 class VenueRepository @Inject constructor() {
 
     private val forSquareService = RetrofitBuilder.fourSquareService
+
 
     private val near = "Rotterdam"
     private val version = "20210901"

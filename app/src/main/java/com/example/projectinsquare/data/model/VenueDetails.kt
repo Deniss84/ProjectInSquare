@@ -1,4 +1,4 @@
-package com.example.projectinsquare.data
+package com.example.projectinsquare.data.model
 
 data class VenueDetails(
     val description: String,
