@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ProjectInSquare</string>
+    <string name="details_title">Venue Details</string>
 </resources>

@@ -11,14 +11,13 @@ class MainViewModel @Inject constructor(
     private val repository: VenueRepository
 ) : ViewModel() {
 
-
     private val searchQuery: MutableLiveData<String> = MutableLiveData("")
 
     fun onTextChanged(newQuery: String) {
         searchQuery.value = newQuery
     }
 
-    val repositoryList = searchQuery.switchMap { searchQuery ->
+    val venuesList = searchQuery.switchMap { searchQuery ->
         liveData(context = viewModelScope.coroutineContext + Dispatchers.IO) {
             emit(repository.searchVenues(searchQuery))
         }

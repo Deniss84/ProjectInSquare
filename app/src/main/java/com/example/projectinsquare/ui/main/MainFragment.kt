@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.example.projectinsquare.databinding.FragmentMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -38,7 +39,7 @@ class MainFragment : Fragment() {
 
         setUpAdapter()
 
-        viewModel.repositoryList.observe(viewLifecycleOwner) { adapter.submitList(it) }
+        viewModel.venuesList.observe(viewLifecycleOwner) { adapter.submitList(it) }
 
         binding.searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -57,6 +58,12 @@ class MainFragment : Fragment() {
     }
 
     private fun setUpAdapter() {
+
+        adapter.setOnClickListener { venue ->
+            val action = MainFragmentDirections.toDetails(venue.id)
+            findNavController(this).navigate(action)
+        }
+
         binding.recyclerView.adapter = adapter
     }
 }

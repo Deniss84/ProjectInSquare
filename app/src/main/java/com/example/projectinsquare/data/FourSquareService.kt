@@ -1,6 +1,7 @@
 package com.example.projectinsquare.data
 
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
@@ -15,4 +16,12 @@ interface FourSquareService {
         @Query("radius") radius: Int,
         @Query("query") query: String,
     ): Venues
+
+    @GET("venues/{id}")
+    suspend fun venueDetails(
+        @Path("id") venueId: String,
+        @Query("client_id") clientId: String,
+        @Query("client_secret") clientSecret: String,
+        @Query("v") version: String,
+    ): VenueDetailsResponse
 }

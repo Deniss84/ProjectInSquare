@@ -25,7 +25,7 @@ class VenueAdapter @Inject constructor() :
 
     override fun onBindViewHolder(holder: VenueViewHolder, position: Int) {
         holder.nameView.text = getItem(position).name
-        holder.addressView.text = getItem(position).address
+        holder.addressView.text = getItem(position).location.addressIfAny
     }
 
     fun setOnClickListener(onClickHandler: (Venue) -> Unit) {
