@@ -2,37 +2,16 @@ package com.example.projectinsquare.data
 
 import com.example.projectinsquare.data.model.Venue
 import com.example.projectinsquare.data.model.VenueDetails
-import com.example.projectinsquare.data.network.RetrofitBuilder
+import com.example.projectinsquare.di.LocalStorage
+import com.example.projectinsquare.di.OnlineStorage
 import javax.inject.Inject
 
-class VenueRepository @Inject constructor() {
+class VenueRepository @Inject constructor(
+    @OnlineStorage private val networkProvider: VenueProvider,
+    @LocalStorage private val offlineProvider: VenueProvider
+) {
 
-    private val forSquareService = RetrofitBuilder.fourSquareService
+    suspend fun searchVenues(query: String): List<Venue> = networkProvider.searchVenues(query)
 
-
-    private val near = "Rotterdam"
-    private val version = "20210901"
-    private val limit = 10
-    private val radiusInMeters = 1000
-
-    suspend fun searchVenues(query: String): List<Venue> {
-        return forSquareService.searchVenues(
-            clientId,
-            clientSecret,
-            version,
-            near,
-            limit,
-            radiusInMeters,
-            query
-        ).response.venues
-    }
-
-    suspend fun venueDetails(venueId: String): VenueDetails {
-        return forSquareService.venueDetails(
-            venueId,
-            clientId,
-            clientSecret,
-            version,
-        ).response.venue
-    }
+    suspend fun venueDetails(venueId: String): VenueDetails = networkProvider.venueDetails(venueId)
 }
