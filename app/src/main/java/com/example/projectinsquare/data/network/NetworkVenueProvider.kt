@@ -6,6 +6,7 @@ import com.example.projectinsquare.data.VenueProvider
 import com.example.projectinsquare.data.model.Venue
 import com.example.projectinsquare.data.model.VenueDetails
 import dagger.hilt.android.qualifiers.ApplicationContext
+import java.lang.RuntimeException
 import javax.inject.Inject
 
 class NetworkVenueProvider @Inject constructor(
@@ -15,6 +16,12 @@ class NetworkVenueProvider @Inject constructor(
 
     private val clientId = context.getString(R.string.client_id)
     private val clientSecret = context.getString(R.string.client_secret)
+
+    init {
+        if (clientId.isBlank() or clientSecret.isBlank()){
+            throw RuntimeException("Please set clientId and clientSecret in secrets.xml")
+        }
+    }
 
     override suspend fun searchVenues(query: String): List<Venue> = forSquareService.searchVenues(
         clientId,
